@@ -1,4 +1,4 @@
-import { model, ObjectId, Schema, Types } from "mongoose";
+import { model, ObjectId, Schema } from "mongoose";
 
 export interface IMessage {
   text: string;
