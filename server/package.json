@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Server side code for Cordia message app",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
@@ -10,8 +10,8 @@
     "dev": "tsc -w & nodemon src/index.ts"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "chrisdadev13",
+  "license": "MIT",
   "dependencies": {
     "@types/cors": "^2.8.13",
     "@types/dotenv": "^8.2.0",
