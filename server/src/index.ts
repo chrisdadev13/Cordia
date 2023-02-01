@@ -1,8 +1,12 @@
 import http from "http";
 import app from "./app";
+import Database from "./configs/db";
+import { PORT } from "./configs/constants";
 
 const server = http.createServer(app);
 
-server.listen(8000, () => {
-  console.log(`Server is running on port ${8000}`);
+Database.ConnectDB();
+
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
