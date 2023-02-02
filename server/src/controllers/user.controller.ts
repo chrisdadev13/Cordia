@@ -13,13 +13,13 @@ export default class UserController {
       group
     );
 
-    res.json({ data: user });
+    res.json(user);
   }
   static async login(req: Req, res: Res) {
     const { username, password } = req.body;
 
     const user = await UserService.login(username, password);
 
-    res.json({ data: user });
+    res.json(user);
   }
 }
