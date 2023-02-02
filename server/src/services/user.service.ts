@@ -1,8 +1,9 @@
 import { Request as Req, Response as Res } from "express";
-import { ObjectId } from "mongoose";
+import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import UserModel from "../models/user.model";
 import Jwt from "../utils/jwt";
+import { TOKEN_KEY } from "../configs/constants";
 
 export default class UserService {
   static async register(
@@ -12,41 +13,44 @@ export default class UserService {
     password: string,
     group: string
   ) {
-    const doesExist = await UserModel.findOne({ username: username });
-
+    const doesExist = Boolean(await UserModel.findOne({ username: username }));
     if (doesExist) throw new Error("Username is already taken");
 
     const encryptedPassword = await bcrypt.hash(password, 10);
 
-    const user = await UserModel.create({
-      firstName: firstName,
-      lastName: lastName,
-      username: username,
+    const user = new UserModel({
+      firstName,
+      lastName,
+      username,
       password: encryptedPassword,
-      group: group,
+      group,
     });
-
-    const accessToken = Jwt.signAccess(user._id, user.username);
 
     await user.save();
 
     return {
-      user: user,
-      token: accessToken,
+      user,
     };
   }
 
   static async login(username: string, password: string) {
     const user = await UserModel.findOne({ username: username });
-    const validPassword = async (password: string, userPassword: string) =>
-      await bcrypt.compare(password, userPassword);
 
-    if (user && validPassword(password, user.password)) {
-      const accessToken = Jwt.signAccess(user._id, user.username);
+    const validPassword =
+      user === null ? false : await bcrypt.compare(password, user.password);
+
+    if (!(user && validPassword)) {
       return {
-        user: user,
-        token: accessToken,
+        message: "Invalid username or password",
       };
     }
+
+    const token = Jwt.signAccess(user._id, user.username);
+
+    user.tokens = [...user.tokens, token];
+
+    return {
+      user,
+    };
   }
 }
