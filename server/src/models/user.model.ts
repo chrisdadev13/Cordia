@@ -3,7 +3,6 @@ import { model, ObjectId, Schema } from "mongoose";
 export interface IUser {
   firstName: string;
   lastName: string;
-  email: string;
   username: string;
   password: string;
   group: ObjectId;
@@ -19,10 +18,6 @@ const userSchema = new Schema<IUserDocument>({
     required: true,
   },
   lastName: {
-    type: String,
-    required: true,
-  },
-  email: {
     type: String,
     required: true,
   },
