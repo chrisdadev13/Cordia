@@ -6,6 +6,7 @@ export interface IUser {
   username: string;
   password: string;
   group: ObjectId;
+  tokens: string[];
 }
 
 interface IUserDocument extends IUser {
@@ -34,6 +35,11 @@ const userSchema = new Schema<IUserDocument>({
     ref: "Groups",
     required: true,
   },
+  tokens: [
+    {
+      type: String,
+    },
+  ],
 });
 
 const UserModel = model<IUserDocument>("Users", userSchema);
