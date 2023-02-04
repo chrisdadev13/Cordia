@@ -16,9 +16,19 @@ const login = async (loginData: LoginValues) => {
   return data;
 };
 
+const getUser = async () => {
+  const { data } = await api.get("/user", {
+    headers: {
+      "x-access-token": localStorage.getItem("token"),
+    },
+  });
+  return data;
+};
+
 const usersAPI = {
   register,
   login,
+  getUser,
 };
 
 export default usersAPI;

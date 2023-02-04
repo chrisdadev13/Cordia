@@ -10,7 +10,6 @@ interface LoginFormValues {
 }
 
 function LoginForm() {
-  const navigate = useNavigate();
   const { login } = useAuth();
 
   const formik = useFormik<LoginFormValues>({
@@ -31,7 +30,6 @@ function LoginForm() {
     }),
     onSubmit: (values) => {
       login(values);
-      navigate("/homepage");
     },
   });
 
