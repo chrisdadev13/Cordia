@@ -38,9 +38,7 @@ export default class UserService {
       user === null ? false : await bcrypt.compare(password, user.password);
 
     if (!(user && validPassword)) {
-      return {
-        message: "Invalid username or password",
-      };
+      return "Invalid username or password";
     }
 
     const token = Jwt.signAccess(user._id, user.username);

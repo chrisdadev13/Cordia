@@ -7,7 +7,7 @@ const userRouter = Router();
 userRouter.post("/register", UserController.register);
 userRouter.post("/login", UserController.login);
 userRouter.get("/user", auth, (req: any, res: any) => {
-  res.json(req.username);
+  res.json({ data: req.user });
 });
 
 export default userRouter;
