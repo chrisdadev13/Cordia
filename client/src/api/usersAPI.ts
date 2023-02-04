@@ -11,8 +11,14 @@ const register = async (registerData: RegisterValues) => {
   return data;
 };
 
+const login = async (loginData: LoginValues) => {
+  const { data } = await api.post("/login", loginData);
+  return data;
+};
+
 const usersAPI = {
   register,
+  login,
 };
 
 export default usersAPI;
