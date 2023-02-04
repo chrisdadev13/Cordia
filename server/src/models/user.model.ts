@@ -5,7 +5,6 @@ export interface IUser {
   lastName: string;
   username: string;
   password: string;
-  group: ObjectId;
   tokens: string[];
 }
 
@@ -28,11 +27,6 @@ const userSchema = new Schema<IUserDocument>({
   },
   password: {
     type: String,
-    required: true,
-  },
-  group: {
-    type: Schema.Types.ObjectId,
-    ref: "Groups",
     required: true,
   },
   tokens: [

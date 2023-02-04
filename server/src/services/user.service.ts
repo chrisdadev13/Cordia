@@ -10,11 +10,10 @@ export default class UserService {
     firstName: string,
     lastName: string,
     username: string,
-    password: string,
-    group: string
+    password: string
   ) {
     const doesExist = Boolean(await UserModel.findOne({ username: username }));
-    if (doesExist) throw new Error("Username is already taken");
+    if (doesExist) return { message: "Username is already taken" };
 
     const encryptedPassword = await bcrypt.hash(password, 10);
 
@@ -23,7 +22,6 @@ export default class UserService {
       lastName,
       username,
       password: encryptedPassword,
-      group,
     });
 
     await user.save();
