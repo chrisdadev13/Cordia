@@ -7,7 +7,7 @@ function LandingPage() {
       flex-col items-center justify-center w-screen"
     >
       <h1 className="font-semibold mb-5">Cordia Chat</h1>
-      <p className="w-2/3 mb-5 font-serif">
+      <p className="w-1/3 mb-5 font-serif">
         Cordia is a minimalist, real-time text groupal, chat app. It&apos;s
         place where you can talk and interact with people like you, make new
         friends, share new thoughts and, most importantly, have fun being

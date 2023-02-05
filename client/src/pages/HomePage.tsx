@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
+import HomePanel from "../components/HomePanel";
 import useAuth from "../hooks/useAuth";
 
 function HomePage() {
-  const { getUser } = useAuth();
-
+  const { user, getUser } = useAuth();
+  useEffect(() => {
+    getUser();
+  }, []);
   return (
-    <div>
-      <h1 onClick={() => getUser()}>Home</h1>
+    <div className="flex flex-col items-center justify-center w-screen">
+      <HomePanel username={user.username} />
     </div>
   );
 }

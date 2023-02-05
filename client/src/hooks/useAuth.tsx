@@ -3,7 +3,7 @@ import usersAPI from "../api/usersAPI";
 import { useNavigate } from "react-router";
 
 export default function useAuth() {
-  const [user, setUser] = React.useState({});
+  const [user, setUser] = React.useState<any>({});
   const navigate = useNavigate();
 
   const register = async (registerData: RegisterValues) => {
@@ -31,7 +31,7 @@ export default function useAuth() {
   const getUser = async () => {
     try {
       await usersAPI.getUser().then((res) => {
-        setUser(res);
+        setUser(res.data);
       });
     } catch (error) {
       console.log(error);
