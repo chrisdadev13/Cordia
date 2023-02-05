@@ -8,7 +8,7 @@ function HomePage() {
     getUser();
   }, []);
   return (
-    <div className="flex flex-col items-center justify-center w-screen">
+    <div className="flex h-screen flex-col items-center justify-center w-screen dark:bg-black dark:text-white">
       <HomePanel username={user.username} />
     </div>
   );

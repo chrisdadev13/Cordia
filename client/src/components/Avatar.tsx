@@ -9,7 +9,11 @@ function Avatar(props: { username: string }) {
   });
   const svg = avatar.toString();
 
-  return <SVG src={svg} width={64} height={64} />;
+  return (
+    <div className="bg-white rounded-full">
+      <SVG src={svg} width={64} height={64} />
+    </div>
+  );
 }
 
 export default Avatar;

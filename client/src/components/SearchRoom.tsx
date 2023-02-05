@@ -9,7 +9,7 @@ function SearchRoom() {
       </p>
       <input
         type="text"
-        className="border border-black w-full rounded-lg h-12"
+        className="border border-black dark:border-white dark:bg-black w-full rounded-lg h-12"
       />
     </form>
   );
