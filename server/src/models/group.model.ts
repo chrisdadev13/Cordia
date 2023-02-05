@@ -2,8 +2,8 @@ import { model, ObjectId, Schema } from "mongoose";
 
 export interface IGroup {
   name: string;
-  membersCounter: number;
-  messagesCounter: number;
+  category: string;
+  description: string;
   members: ObjectId[];
   messages: ObjectId[];
 }
@@ -13,26 +13,24 @@ const groupSchema = new Schema<IGroup>({
     type: String,
     required: true,
   },
-  membersCounter: {
-    type: Number,
+  category: {
+    type: String,
     required: true,
   },
-  messagesCounter: {
-    type: Number,
-    required: true,
+  description: { 
+    type: String,
+    required: true
   },
   members: [
     {
       type: Schema.Types.ObjectId,
       ref: "Users",
-      required: true,
     },
   ],
   messages: [
     {
       type: Schema.Types.ObjectId,
       ref: "Messages",
-      required: true,
     },
   ],
 });
