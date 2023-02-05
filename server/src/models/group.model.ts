@@ -4,6 +4,7 @@ export interface IGroup {
   name: string;
   category: string;
   description: string;
+  creator: string;
   members: ObjectId[];
   messages: ObjectId[];
 }
@@ -17,9 +18,13 @@ const groupSchema = new Schema<IGroup>({
     type: String,
     required: true,
   },
-  description: { 
+  description: {
     type: String,
-    required: true
+    required: true,
+  },
+  creator: {
+    type: String,
+    required: true,
   },
   members: [
     {
