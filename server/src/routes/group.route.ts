@@ -3,6 +3,6 @@ import GroupController from "../controllers/group.controller";
 
 const groupRouter = Router();
 
-groupRouter.post("/createRoom", GroupController.createGroup);
+groupRouter.post("/createGroup", GroupController.createGroup);
 
 export default groupRouter;
