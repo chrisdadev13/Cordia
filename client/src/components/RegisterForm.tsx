@@ -47,7 +47,7 @@ function RegisterForm() {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="flex flex-col border border-b-4 border-r-4 border-black rounded-lg shadow-lg px-5 py-2"
+      className="flex flex-col border border-b-4 border-r-4 border-black rounded-lg shadow-lg px-5 py-2 animate-bounce-short"
     >
       <label htmlFor="firstName">First name</label>
       <input

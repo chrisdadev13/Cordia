@@ -28,11 +28,10 @@ function CreateRoom() {
       token: Yup.string(),
     }),
     onSubmit: (values) => {
-      groupsAPI.createGroup(values).then(() => {
-        values.name = "";
-        values.category = "";
-        values.description = "";
-      });
+      groupsAPI.createGroup(values);
+      values.name = "";
+      values.category = "";
+      values.description = "";
     },
   });
   return (
@@ -64,7 +63,7 @@ function CreateRoom() {
         className="border border-black dark:border-white dark:bg-black w-full h-24 resize-none rounded-lg"
       />
       <button
-        className="border border-black"
+        className="border border-black dark:border-white dark:border"
         type="submit"
         onClick={() => formik.handleSubmit}
       >

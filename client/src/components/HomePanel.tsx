@@ -10,7 +10,7 @@ function HomePanel(props: { username: string }) {
   return (
     <div className="xl:w-1/4 lg:w-1/3 border border-b-4 dark:border-1 border-r-4 dark:border-1 border-black dark:border-white rounded-lg shadow-lg  px-5 py-2">
       <h1 className="font-semibold">Welcome:</h1>
-      <div className="flex items-center justify-between w-full mb-5 ">
+      <div className="flex items-center justify-between w-full mb-5">
         <UserCard username={props.username} />
         <Avatar username={props.username} />
       </div>
