@@ -1,5 +1,4 @@
 import { Request as Req, Response as Res } from "express";
-import UserModel from "../models/user.model";
 import UserService from "../services/user.service";
 
 export default class UserController {
