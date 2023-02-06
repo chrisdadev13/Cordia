@@ -11,8 +11,14 @@ const createGroup = async (creationData: CreationValues) => {
   return data;
 };
 
+const joinGroup = async (joinData: JoinValues) => {
+  const { data } = await api.post("/joinGroup", joinData);
+  return data;
+};
+
 const groupsAPI = {
   createGroup,
+  joinGroup,
 };
 
 export default groupsAPI;

@@ -4,3 +4,8 @@ interface CreationValues {
   description: string;
   token: string;
 }
+
+interface JoinValues {
+  invitation: string;
+  token: string;
+}
