@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import useAuth from "../hooks/useAuth";
 import useGroup from "../hooks/useGroup";
 import WarningModal from "../components/WarningModal";
+import ChatHeader from "../components/ChatHeader";
 
 function RoomPage() {
   const { group, getGroup } = useGroup();
@@ -12,7 +13,16 @@ function RoomPage() {
     console.log(group);
   }, []);
   return (
-    <div>
+    <div className="w-screen h-screen">
+      <div className="flex items-center justify-center">
+        <ChatHeader
+          name={group.name}
+          category={group.category}
+          creator={group.creator}
+          description={group.description}
+        />
+      </div>
+
       <WarningModal />
     </div>
   );
