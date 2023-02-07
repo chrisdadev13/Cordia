@@ -5,6 +5,6 @@ const groupRouter = Router();
 
 groupRouter.post("/createGroup", GroupController.createGroup);
 groupRouter.post("/joinGroup", GroupController.joinGroup);
-groupRouter.get("/groupData/:id/:token", GroupController.getGroup);
+groupRouter.get("/groupData/:invitation/:token", GroupController.getGroup);
 
 export default groupRouter;

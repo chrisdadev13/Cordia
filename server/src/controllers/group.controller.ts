@@ -20,8 +20,8 @@ export default class GroupController {
   }
 
   static async getGroup(req: Req, res: Res) {
-    const { id, token } = req.params;
-    const group = await GroupService.getGroup(id, token);
+    const { invitation, token } = req.params;
+    const group = await GroupService.getGroup(invitation, token);
 
     res.json(group);
   }
