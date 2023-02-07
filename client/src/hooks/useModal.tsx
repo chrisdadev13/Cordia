@@ -13,6 +13,7 @@ export default function useModal() {
 
   return {
     isOpen,
+    setOpen,
     open,
     close,
   };

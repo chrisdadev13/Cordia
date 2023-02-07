@@ -12,7 +12,7 @@ function HomePanel(props: { username: string }) {
       <h1 className="font-semibold">Welcome:</h1>
       <div className="flex items-center justify-between w-full mb-5">
         <UserCard username={props.username} />
-        <Avatar username={props.username} />
+        <Avatar username={props.username} w={64} h={64} />
       </div>
       {searchingRoom ? <SearchRoom /> : <CreateRoom />}
       <p
