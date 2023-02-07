@@ -1,17 +1,12 @@
 import React from "react";
 import useAuth from "../hooks/useAuth";
 import useGroup from "../hooks/useGroup";
+import Modal from "../components/Modal";
 
 function RoomPage() {
-  const { group, joinGroup } = useGroup();
-
-  const test = () => {
-    console.log(group);
-  };
-
   return (
     <div>
-      <button onClick={test}>Testing</button>
+      <Modal />
     </div>
   );
 }
