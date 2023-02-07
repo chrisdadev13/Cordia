@@ -72,7 +72,7 @@ export default class GroupService {
           category: groupDB.category,
           description: groupDB.description,
           creator: groupDB.creator,
-          memebers: groupDB.members,
+          members: groupDB.members,
         };
 
         return group;
