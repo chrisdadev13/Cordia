@@ -20,7 +20,7 @@ export default function useGroup() {
   const getGroup = async (getDataBy: JoinValues) => {
     try {
       await groupsAPI.getGroup(getDataBy).then((res) => {
-        console.log(res);
+        setGroup(res);
       });
     } catch (error) {
       console.log(error);

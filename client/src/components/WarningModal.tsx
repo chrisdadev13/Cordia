@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 import useModal from "../hooks/useModal";
 
-function Modal() {
+function WarningModal() {
   const navigate = useNavigate();
   const { isOpen, close } = useModal();
 
@@ -63,4 +63,4 @@ function Modal() {
   );
 }
 
-export default Modal;
+export default WarningModal;
