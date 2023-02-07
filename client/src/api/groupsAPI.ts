@@ -16,9 +16,17 @@ const joinGroup = async (joinData: JoinValues) => {
   return data;
 };
 
+const getGroup = async (getDataBy: JoinValues) => {
+  const { data } = await api.get(
+    `/groupData/${getDataBy.invitation}/${getDataBy.token}`
+  );
+  return data;
+};
+
 const groupsAPI = {
   createGroup,
   joinGroup,
+  getGroup,
 };
 
 export default groupsAPI;

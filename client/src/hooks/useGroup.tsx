@@ -17,8 +17,19 @@ export default function useGroup() {
     }
   };
 
+  const getGroup = async (getDataBy: JoinValues) => {
+    try {
+      await groupsAPI.getGroup(getDataBy).then((res) => {
+        console.log(res);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return {
     group,
     joinGroup,
+    getGroup,
   };
 }
