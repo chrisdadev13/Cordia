@@ -37,7 +37,8 @@ const userSchema = new Schema<IUserDocument>({
   ],
   groups: [
     {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: "groups",
     },
   ],
 });

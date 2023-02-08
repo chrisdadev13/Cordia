@@ -48,14 +48,24 @@ export default class GroupService {
           category: groupDB.category,
           description: groupDB.description,
           creator: groupDB.creator,
-          members: [] as any[],
+          members: [] as string[],
         };
 
-        groupDB.members = [...groupDB.members, decoded.username];
+        const memberExists = groupDB.members.some(
+          (member) => member === decoded.username
+        );
+        if (!memberExists)
+          groupDB.members = [...groupDB.members, decoded.username];
+
+        const alreadyJoined = user.groups.some(
+          (invitation) => invitation.toString() === id.toString()
+        );
+        if (!alreadyJoined) user.groups = [...user.groups, id];
 
         group.members = groupDB.members;
 
-        user.groups = [...user.groups, id];
+        groupDB.save();
+        user.save();
 
         return {
           group,
@@ -73,6 +83,7 @@ export default class GroupService {
       const decoded = jwt.verify(token, TOKEN_KEY) as any;
       if (decoded) {
         const group = {
+          id: id,
           name: groupDB.name,
           category: groupDB.category,
           description: groupDB.description,

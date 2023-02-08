@@ -28,8 +28,7 @@ const groupSchema = new Schema<IGroup>({
   },
   members: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "Users",
+      type: String,
     },
   ],
   messages: [
