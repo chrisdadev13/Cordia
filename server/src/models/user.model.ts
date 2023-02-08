@@ -6,6 +6,7 @@ export interface IUser {
   username: string;
   password: string;
   tokens: string[];
+  groups: string[];
 }
 
 interface IUserDocument extends IUser {
@@ -30,6 +31,11 @@ const userSchema = new Schema<IUserDocument>({
     required: true,
   },
   tokens: [
+    {
+      type: String,
+    },
+  ],
+  groups: [
     {
       type: String,
     },

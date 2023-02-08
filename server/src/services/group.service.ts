@@ -1,6 +1,8 @@
 import GroupModel from "../models/group.model";
+import { Schema } from "mongoose";
 import { TOKEN_KEY } from "../configs/constants";
 import jwt from "jsonwebtoken";
+import UserModel from "../models/user.model";
 
 export default class GroupService {
   static async createGroup(
@@ -37,6 +39,7 @@ export default class GroupService {
 
     try {
       const decoded = jwt.verify(token, TOKEN_KEY) as any;
+      const user = await UserModel.findById(decoded.id);
 
       if (decoded) {
         const group = {
@@ -48,9 +51,11 @@ export default class GroupService {
           members: [] as any[],
         };
 
-        groupDB.members = [...groupDB.members, decoded.id];
+        groupDB.members = [...groupDB.members, decoded.username];
 
         group.members = groupDB.members;
+
+        user.groups = [...user.groups, id];
 
         return {
           group,

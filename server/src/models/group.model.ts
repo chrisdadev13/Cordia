@@ -5,7 +5,7 @@ export interface IGroup {
   category: string;
   description: string;
   creator: string;
-  members: ObjectId[];
+  members: string[];
   messages: ObjectId[];
 }
 

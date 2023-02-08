@@ -1,5 +1,5 @@
-import { Request as Req, Response as Res } from "express";
 import jwt from "jsonwebtoken";
+import GroupService from "./group.service";
 import bcrypt from "bcrypt";
 import UserModel from "../models/user.model";
 import Jwt from "../utils/jwt";
@@ -48,5 +48,25 @@ export default class UserService {
     return {
       user,
     };
+  }
+
+  static async getGroups(token: string) {
+    try {
+      const decoded = jwt.verify(token, TOKEN_KEY) as any;
+      const user = await UserModel.findById(decoded.id);
+
+      let groups: any[] = [];
+
+      if (decoded) {
+        for (let i = 0; i < user.groups.length; i++) {
+          const group = await GroupService.getGroup(user.groups[i], token);
+          groups = [...groups, group];
+        }
+
+        return groups;
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

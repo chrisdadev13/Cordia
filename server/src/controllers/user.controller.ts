@@ -21,4 +21,12 @@ export default class UserController {
 
     res.json(user);
   }
+
+  static async getGroups(req: Req, res: Res) {
+    const { token } = req.params;
+
+    const groups = await UserService.getGroups(token);
+
+    res.json(groups);
+  }
 }
