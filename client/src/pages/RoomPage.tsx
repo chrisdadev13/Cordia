@@ -3,6 +3,8 @@ import useAuth from "../hooks/useAuth";
 import useGroup from "../hooks/useGroup";
 import WarningModal from "../components/WarningModal";
 import ChatHeader from "../components/ChatHeader";
+import ChatMessages from "../components/ChatMessages";
+import ChatSidebar from "../components/ChatSidebar";
 
 function RoomPage() {
   /*
@@ -24,7 +26,10 @@ function RoomPage() {
           description={"Full stack roadmap"}
         />
       </div>
-
+      <div className="flex justify-between w-full h-full">
+        <ChatMessages />
+        <ChatSidebar />
+      </div>
       <WarningModal />
     </div>
   );
