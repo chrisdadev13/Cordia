@@ -2,9 +2,26 @@ import React from "react";
 import usersAPI from "../api/usersAPI";
 import { useNavigate } from "react-router";
 
+interface User {
+  username: string;
+  id: string;
+  iat: number;
+}
+
+interface UserGroup {
+  name: string;
+  category: string;
+  description: string;
+  members: string[];
+}
+
 export default function useAuth() {
-  const [user, setUser] = React.useState<any>({});
-  const [groups, setGroups] = React.useState<any>({});
+  const [user, setUser] = React.useState<User>({
+    username: "",
+    id: "",
+    iat: 0,
+  });
+  const [userGroups, setUserGroups] = React.useState<UserGroup[]>([]);
   const navigate = useNavigate();
 
   const register = async (registerData: RegisterValues) => {
@@ -42,8 +59,9 @@ export default function useAuth() {
   const getGroups = async () => {
     try {
       await usersAPI.getGroups().then((res) => {
-        console.log(res);
+        setUserGroups(res);
       });
+      console.log(userGroups);
     } catch (error) {
       console.log(error);
     }
