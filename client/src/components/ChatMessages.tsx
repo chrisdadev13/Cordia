@@ -2,7 +2,7 @@ import React from "react";
 
 function ChatMessages() {
   return (
-    <div className="p-6 w-full overflow-y-scroll">
+    <div className="p-6 h-5/6 w-full border-black">
       <div className="w-full flex flex-col items-center justify-center ">
         <h1 className="font-semibold text-2xl">Welcome to The Odin Project</h1>
         <p className="w-4/6">
@@ -11,7 +11,8 @@ function ChatMessages() {
           pretium id tincidunt sit amet, vulputate ac mi. Suspendisse venenatis
         </p>
       </div>
-      <hr className="my-7" />
+      <hr className="my-7 bg-black border-black" />
+      <div className="w-full mt-12 h-5/6 border border-black border-b-4 border-r-4 rounded-lg shadow-lg"></div>
     </div>
   );
 }

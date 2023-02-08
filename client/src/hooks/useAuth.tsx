@@ -8,7 +8,8 @@ interface User {
   iat: number;
 }
 
-interface UserGroup {
+export interface UserGroup {
+  id: string;
   name: string;
   category: string;
   description: string;
@@ -61,7 +62,6 @@ export default function useAuth() {
       await usersAPI.getGroups().then((res) => {
         setUserGroups(res);
       });
-      console.log(userGroups);
     } catch (error) {
       console.log(error);
     }
@@ -69,6 +69,7 @@ export default function useAuth() {
 
   return {
     user,
+    userGroups,
     register,
     login,
     getUser,

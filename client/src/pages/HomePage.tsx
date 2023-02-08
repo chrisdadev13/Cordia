@@ -3,14 +3,14 @@ import HomePanel from "../components/HomePanel";
 import useAuth from "../hooks/useAuth";
 
 function HomePage() {
-  const { user, getUser, getGroups } = useAuth();
+  const { user, userGroups, getUser, getGroups } = useAuth();
   useEffect(() => {
     getUser();
     getGroups();
   }, []);
   return (
     <div className="flex h-screen flex-col items-center justify-center w-screen dark:bg-black dark:text-white">
-      <HomePanel username={user.username} />
+      <HomePanel username={user.username} userGroups={userGroups} />
     </div>
   );
 }

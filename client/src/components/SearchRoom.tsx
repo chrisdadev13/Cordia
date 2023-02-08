@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import useGroup from "../hooks/useGroup";
 import * as Yup from "yup";
+import { UserGroup } from "../hooks/useAuth";
 
-function SearchRoom() {
+function SearchRoom(props: { userGroups: UserGroup[] }) {
   const { joinGroup } = useGroup();
+  const [selected, setSelected] = useState<string>("");
+
+  const handleSelect = (event: any) => {
+    setSelected(event.target.value);
+  };
+
+  useEffect(() => {
+    if (props.userGroups.length === 1) {
+      setSelected(props.userGroups[0].id);
+    }
+  }, []);
+
   const formik = useFormik<JoinValues>({
     initialValues: {
       invitation: "",
@@ -24,7 +37,20 @@ function SearchRoom() {
   });
   return (
     <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="invitation">Chatroom: </label>
+      <div className="flex">
+        <select
+          value={selected}
+          onChange={(e) => handleSelect(e)}
+          className="bg-white dark:bg-black text-sm dark:text-white border-none focus:border-none focus:outline-none"
+        >
+          {props.userGroups.map((element, index) => (
+            <option value={element.id} key={index}>
+              {element.name}
+            </option>
+          ))}
+        </select>
+        <p className="ml-4">{selected}</p>
+      </div>
       <input
         id="invitation"
         name="invitation"
