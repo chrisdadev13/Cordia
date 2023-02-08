@@ -25,10 +25,20 @@ const getUser = async () => {
   return data;
 };
 
+const getGroups = async () => {
+  const { data } = await api.get("/getGroups", {
+    headers: {
+      "x-access-token": localStorage.getItem("token"),
+    },
+  });
+  return data;
+};
+
 const usersAPI = {
   register,
   login,
   getUser,
+  getGroups,
 };
 
 export default usersAPI;

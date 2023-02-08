@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 
 export default function useAuth() {
   const [user, setUser] = React.useState<any>({});
+  const [groups, setGroups] = React.useState<any>({});
   const navigate = useNavigate();
 
   const register = async (registerData: RegisterValues) => {
@@ -38,10 +39,21 @@ export default function useAuth() {
     }
   };
 
+  const getGroups = async () => {
+    try {
+      await usersAPI.getGroups().then((res) => {
+        console.log(res);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return {
     user,
     register,
     login,
     getUser,
+    getGroups,
   };
 }
