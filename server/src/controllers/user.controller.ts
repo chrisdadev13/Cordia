@@ -23,9 +23,9 @@ export default class UserController {
   }
 
   static async getGroups(req: Req, res: Res) {
-    const { token } = req.params;
+    const token = req.headers["x-access-token"];
 
-    const groups = await UserService.getGroups(token);
+    const groups = await UserService.getGroups(token as string);
 
     res.json(groups);
   }

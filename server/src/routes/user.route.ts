@@ -9,6 +9,6 @@ userRouter.post("/login", UserController.login);
 userRouter.get("/user", auth, (req: any, res: any) => {
   res.json({ data: req.user });
 });
-userRouter.get("/getGroups/:token", UserController.getGroups);
+userRouter.get("/getGroups", UserController.getGroups);
 
 export default userRouter;
