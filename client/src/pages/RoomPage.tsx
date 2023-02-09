@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import useGroup from "../hooks/useGroup";
-import WarningModal from "../components/WarningModal";
-import ChatHeader from "../components/ChatHeader";
-import ChatMessages from "../components/ChatMessages";
-import ChatSidebar from "../components/ChatSidebar";
-import ChatInput from "../components/ChatInput";
+import WarningModal from "../utils/WarningModal";
+import ChatHeader from "../components/Chat/ChatHeader";
+import ChatMessages from "../components/Chat/ChatMessages";
+import ChatSidebar from "../components/Chat/ChatSidebar";
+import ChatInput from "../components/Chat/ChatInput";
 import io, { Socket } from "socket.io-client";
 
 function RoomPage() {
@@ -36,20 +36,23 @@ function RoomPage() {
     const socket = io("http://localhost:8000");
     setSocket(socket);
 
-    socket.on("connect", () => {
-      console.log("Connected to socket.io server");
+    setTimeout(() => {
+      socket.on("connect", () => {
+        console.log("Connected to socket.io server");
 
-      socket.emit("join-room", {
-        username: user.username,
-        invitation: invitation,
+        socket.emit("join-room", {
+          username: user.username,
+          invitation: invitation,
+        });
       });
-    });
+    }, 500);
 
     socket.on("send-message", (data: any) => {
       console.log(data);
       setMessages((prev) => [...prev, data]);
       console.log(messages);
     });
+
     return () => {
       socket.disconnect();
     };
@@ -86,8 +89,8 @@ function RoomPage() {
           <ChatInput
             value={message}
             onChange={(e: any) => setMessage(e.target.value)}
+            onClick={handleClick}
           />
-          <button onClick={handleClick}>Testing</button>
         </div>
         <ChatSidebar creator={group.creator} members={group.members} />
       </div>

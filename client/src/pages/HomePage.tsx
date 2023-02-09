@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import HomePanel from "../components/HomePanel";
+import HomePanel from "../components/Home/HomePanel";
 import useAuth from "../hooks/useAuth";
 
 function HomePage() {

@@ -3,9 +3,10 @@ import React from "react";
 interface InputProps {
   value: string;
   onChange: React.ChangeEventHandler;
+  onClick: React.MouseEventHandler;
 }
 
-function ChatInput({ value, onChange }: InputProps) {
+function ChatInput({ value, onChange, onClick }: InputProps) {
   return (
     <div className="w-full p-5 mt-16">
       <input
@@ -14,6 +15,7 @@ function ChatInput({ value, onChange }: InputProps) {
         value={value}
         onChange={onChange}
       />
+      <button onClick={onClick}>Send</button>
     </div>
   );
 }

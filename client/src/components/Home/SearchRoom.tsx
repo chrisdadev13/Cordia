@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
-import useGroup from "../hooks/useGroup";
+import useGroup from "../../hooks/useGroup";
 import * as Yup from "yup";
-import { UserGroup } from "../hooks/useAuth";
+import { UserGroup } from "../../hooks/useAuth";
 
 function SearchRoom(props: { userGroups: UserGroup[] }) {
   const { joinGroup } = useGroup();

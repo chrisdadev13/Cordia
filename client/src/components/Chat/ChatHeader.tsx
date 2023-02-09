@@ -1,5 +1,5 @@
 import React from "react";
-import DropdownMenu from "./DropdownMenu";
+import DropdownMenu from "../../utils/DropdownMenu";
 
 interface GroupInformation {
   name: string;

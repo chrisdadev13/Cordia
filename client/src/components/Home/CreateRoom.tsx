@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import groupsAPI from "../api/groupsAPI";
+import groupsAPI from "../../api/groupsAPI";
 import { useNavigate } from "react-router";
 
 interface GroupFormValues {

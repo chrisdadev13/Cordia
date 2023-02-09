@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import SearchRoom from "./SearchRoom";
 import CreateRoom from "./CreateRoom";
-import Avatar from "./Avatar";
+import Avatar from "../../utils/Avatar";
 import UserCard from "./UserCard";
-import { UserGroup } from "../hooks/useAuth";
+import { UserGroup } from "../../hooks/useAuth";
 
 interface PanelProps {
   username: string;
