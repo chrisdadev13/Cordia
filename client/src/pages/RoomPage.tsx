@@ -77,6 +77,7 @@ function RoomPage() {
           category={group.category}
           creator={group.creator}
           description={group.description}
+          username={user.username}
         />
       </div>
       <div className="flex justify-between w-full h-full">

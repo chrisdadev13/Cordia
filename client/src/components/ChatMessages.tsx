@@ -8,9 +8,10 @@ function ChatMessages(props: { messages: MessageProps[] }) {
       <div className="w-full flex flex-col items-center justify-center ">
         <h1 className="font-semibold text-2xl">Welcome to The Odin Project</h1>
         <p className="w-4/6">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc gravida
-          urna augue, non suscipit velit aliquet vitae. Suspendisse leo elit,
-          pretium id tincidunt sit amet, vulputate ac mi. Suspendisse venenatis
+          The Odin Project is one of those &quot;What I wish I had when I was
+          learning&quot; resources. This project is designed to fill in the gap
+          for people who are trying to hack it on their own but still want a
+          high quality education.
         </p>
       </div>
       <hr className="my-7 bg-black border-black dark:bg-white dark:border-white" />
