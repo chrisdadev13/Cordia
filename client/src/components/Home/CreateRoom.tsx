@@ -42,6 +42,7 @@ function CreateRoom() {
         id="name"
         value={formik.values.name}
         onChange={formik.handleChange}
+        placeholder={formik.errors.name !== undefined ? formik.errors.name : ""}
         type="text"
         className="border border-black dark:border-white dark:bg-black w-full rounded-lg h-12"
       />
@@ -51,6 +52,9 @@ function CreateRoom() {
         id="category"
         value={formik.values.category}
         onChange={formik.handleChange}
+        placeholder={
+          formik.errors.category !== undefined ? formik.errors.category : ""
+        }
         type="text"
         className="border border-black dark:border-white dark:bg-black w-full rounded-lg h-12"
       />

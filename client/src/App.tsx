@@ -4,7 +4,7 @@ import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
-import RoomPage from "./pages/RoomPage";
+import Chatroom from "./pages/Chatroom";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/home/room" element={<RoomPage />} />
+        <Route path="/home/room" element={<Chatroom />} />
       </Routes>
     </BrowserRouter>
   );

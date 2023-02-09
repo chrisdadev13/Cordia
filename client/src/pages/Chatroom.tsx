@@ -8,7 +8,7 @@ import ChatSidebar from "../components/Chat/ChatSidebar";
 import ChatInput from "../components/Chat/ChatInput";
 import io, { Socket } from "socket.io-client";
 
-function RoomPage() {
+function Chatroom() {
   const { group, getGroup } = useGroup();
   const { user, getUser } = useAuth();
   const invitation = localStorage.getItem("group") as string;
@@ -36,16 +36,14 @@ function RoomPage() {
     const socket = io("http://localhost:8000");
     setSocket(socket);
 
-    setTimeout(() => {
-      socket.on("connect", () => {
-        console.log("Connected to socket.io server");
+    socket.on("connect", () => {
+      console.log("Connected to socket.io server");
 
-        socket.emit("join-room", {
-          username: user.username,
-          invitation: invitation,
-        });
+      socket.emit("join-room", {
+        username: user.username,
+        invitation: invitation,
       });
-    }, 500);
+    });
 
     socket.on("send-message", (data: any) => {
       console.log(data);
@@ -99,4 +97,4 @@ function RoomPage() {
   );
 }
 
-export default RoomPage;
+export default Chatroom;

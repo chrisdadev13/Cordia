@@ -13,11 +13,11 @@ function LandingPage() {
         friends, share new thoughts and, most importantly, have fun being
         yourself... Just like Discord but way uglier.
       </p>
-      <button className="px-5 py-2 font-medium border border-b-4 border-r-4 border-black rounded-lg shadow-lg hover:shadow-sm">
-        <a className="text-black" href="/login">
+      <a className="text-black" href="/login">
+        <button className="px-5 py-2 font-medium border border-b-4 border-r-4 border-black rounded-lg shadow-lg hover:shadow-sm">
           Enter now!
-        </a>
-      </button>
+        </button>
+      </a>
     </div>
   );
 }

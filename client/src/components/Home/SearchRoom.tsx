@@ -56,6 +56,9 @@ function SearchRoom(props: { userGroups: UserGroup[] }) {
         name="invitation"
         value={formik.values.invitation}
         onChange={formik.handleChange}
+        placeholder={
+          formik.errors.invitation !== undefined ? formik.errors.invitation : ""
+        }
         type="text"
         className="border border-black dark:border-white dark:bg-black w-full rounded-lg h-12"
       />

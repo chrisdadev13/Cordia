@@ -43,16 +43,30 @@ function LoginForm() {
         name="username"
         onChange={formik.handleChange}
         value={formik.values.username}
+        placeholder={
+          formik.errors.username !== undefined ? "Invalid username" : ""
+        }
         type="text"
-        className="border border-black rounded-md"
+        className={`border border-black rounded-md p-1 ${
+          formik.errors.username !== undefined
+            ? "border-red-700 placeholder:text-red-400"
+            : ""
+        }`}
       />
       <label htmlFor="password">Password</label>
       <input
         name="password"
         onChange={formik.handleChange}
         value={formik.values.password}
+        placeholder={
+          formik.errors.password !== undefined ? "Invalid password" : ""
+        }
         type="password"
-        className="border border-black rounded-md"
+        className={`border border-black rounded-md  p-1 ${
+          formik.errors.password !== undefined
+            ? "border-red-700 placeholder:text-red-400"
+            : ""
+        }`}
       />
       <a href="/register">Still don&apos;t have an account?</a>
       <div className="flex items-center justify-center w-full">
