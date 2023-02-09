@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import useGroup from "../hooks/useGroup";
 import WarningModal from "../components/WarningModal";
@@ -6,15 +6,69 @@ import ChatHeader from "../components/ChatHeader";
 import ChatMessages from "../components/ChatMessages";
 import ChatSidebar from "../components/ChatSidebar";
 import ChatInput from "../components/ChatInput";
+import io, { Socket } from "socket.io-client";
 
 function RoomPage() {
   const { group, getGroup } = useGroup();
+  const { user, getUser } = useAuth();
   const invitation = localStorage.getItem("group") as string;
   const token = localStorage.getItem("token") as string;
+  const [socket, setSocket] = useState<any>(io("http://localhost:8000"));
+  const [message, setMessage] = useState<string>("");
+  const [messages, setMessages] = useState<any[]>([]);
+
+  const getCurrentTime = () => {
+    const date = new Date();
+
+    let hours: any = date.getHours();
+    let minutes: any = date.getMinutes();
+
+    hours = hours < 10 ? `0${hours}` : hours;
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+
+    return `${hours}:${minutes}`;
+  };
+
   useEffect(() => {
     getGroup({ invitation: invitation, token: token });
-    console.log(invitation);
+    getUser();
+
+    const socket = io("http://localhost:8000");
+    setSocket(socket);
+
+    socket.on("connect", () => {
+      console.log("Connected to socket.io server");
+
+      socket.emit("join-room", {
+        username: user.username,
+        invitation: invitation,
+      });
+    });
+
+    socket.on("send-message", (data: any) => {
+      console.log(data);
+      setMessages((prev) => [...prev, data]);
+      console.log(messages);
+    });
+    return () => {
+      socket.disconnect();
+    };
   }, []);
+
+  const sendMessage = (message: string) => {
+    socket.emit("send-message", {
+      username: user.username,
+      group: invitation,
+      message: message,
+      time: getCurrentTime(),
+    });
+  };
+
+  const handleClick = () => {
+    sendMessage(message);
+    setMessage("");
+  };
+
   return (
     <div className="w-screen h-screen dark:bg-black overflow-x-hidden">
       <div className="flex items-center justify-center">
@@ -27,8 +81,12 @@ function RoomPage() {
       </div>
       <div className="flex justify-between w-full h-full">
         <div className="p-3">
-          <ChatMessages />
-          <ChatInput />
+          <ChatMessages messages={messages} />
+          <ChatInput
+            value={message}
+            onChange={(e: any) => setMessage(e.target.value)}
+          />
+          <button onClick={handleClick}>Testing</button>
         </div>
         <ChatSidebar creator={group.creator} members={group.members} />
       </div>

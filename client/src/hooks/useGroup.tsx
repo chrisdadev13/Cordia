@@ -10,7 +10,7 @@ export default function useGroup() {
     try {
       await groupsAPI.joinGroup(joinData).then((res) => {
         localStorage.setItem("group", res.group.id);
-        navigate("/room");
+        navigate("/home/room");
       });
     } catch (error) {
       console.log(error);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 interface SidebarProps {
   creator: string;
@@ -6,20 +6,26 @@ interface SidebarProps {
 }
 
 function ChatSidebar({ creator, members }: SidebarProps) {
-  console.log(members);
+  const listMembers = () => {
+    if (members !== undefined)
+      return (
+        <>
+          {members.map((member, i) => (
+            <p key={i}>{member}</p>
+          ))}
+        </>
+      );
+  };
   return (
-    <div className="h-full p-6 w-2/12 bg-gray-50 border border-black">
+    <div className="hidden lg:block h-full dark:border-white p-6 w-2/12 bg-gray-50 border border-black">
       <div>
         <h2 className="font-bold">Founder:</h2>
         <p className="text-sm">{creator}</p>
       </div>
       <div className="mt-5">
         <h2 className="font-bold">Members:</h2>
-        {members.map((member, i) => (
-          <p className="text-sm" key={i}>
-            {member}
-          </p>
-        ))}
+        {members === undefined && <p>empty</p>}
+        <>{members !== undefined && listMembers()}</>
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ function SearchRoom(props: { userGroups: UserGroup[] }) {
     if (props.userGroups.length === 1) {
       setSelected(props.userGroups[0].id);
     }
-  }, []);
+  }, [props.userGroups]);
 
   const formik = useFormik<JoinValues>({
     initialValues: {
@@ -49,7 +49,7 @@ function SearchRoom(props: { userGroups: UserGroup[] }) {
             </option>
           ))}
         </select>
-        <p className="ml-4">{selected}</p>
+        <p>{selected}</p>
       </div>
       <input
         id="invitation"

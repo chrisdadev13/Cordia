@@ -35,10 +35,16 @@ function DropdownMenu(props: { username: string }) {
           >
             Change theme
           </li>
-          <li className="cursor-pointer dark:text-black dark:hover:text-white  hover:bg-black hover:text-white transition ease-in-out">
+          <li
+            onClick={() => navigate("/home")}
+            className="cursor-pointer dark:text-black dark:hover:text-white  hover:bg-black hover:text-white transition ease-in-out"
+          >
             Go home
           </li>
-          <li className="cursor-pointer dark:text-black dark:hover:text-white hover:bg-black hover:text-white transition ease-in-out">
+          <li
+            onClick={logout}
+            className="cursor-pointer dark:text-black dark:hover:text-white hover:bg-black hover:text-white transition ease-in-out"
+          >
             Sign out
           </li>
           <li className="cursor-pointer  bg-red-500 border border-b-4 border-r-4 border-black shadow-lg text-white rounded-lg p-2 hover:bg-red-600">
