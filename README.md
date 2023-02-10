@@ -2,7 +2,7 @@
 
 This is the frontend side of a real-time groupal chat app, based on discord, which I made purely as an academical project.
 
-[API Repository](http://github.com/chrisdadev/Cordia-API)
+[API Repository](https://github.com/chrisdadev13/Cordia-API)
 
 [Live Demo](http://cordia.vercel.app) :point_left:
 
