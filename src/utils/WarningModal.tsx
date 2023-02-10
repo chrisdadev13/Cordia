@@ -20,19 +20,19 @@ function WarningModal() {
       <div
         id="defaultModal"
         aria-hidden="true"
-        className={`fixed rounded-lg top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 border border-b-8 border-r-8 border-gray-900 shadow-lg ${
+        className={`fixed w-full lg:w-1/2 xl:w-2/6 md:w-1/2 overflow-y-scroll rounded-lg top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 border border-b-8 border-r-8 border-gray-900 shadow-lg ${
           isOpen ? "" : "hidden"
         }`}
       >
         <div className="relative w-full h-full max-w-2xl md:h-auto">
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div className="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-              <h3 className="text-xl font-semibold dark:text-white bg-black text-white p-2">
+              <h3 className="lg:text-xl xl:text-xl font-semibold dark:text-white bg-black text-white p-2">
                 Are you really sure about this?
               </h3>
             </div>
             <div className="p-6 space-y-6">
-              <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+              <p className="text-sm xl:text-base lg:text-base md:text-base leading-relaxed text-gray-500 dark:text-gray-400">
                 Yo, what&apos;s up! This chatroom is part of an academic
                 project, but it&apos;s only open to those who are 18 and up. If
                 you&apos;re younger than that, sorry, better luck next time.

@@ -37,7 +37,7 @@ function SearchRoom(props: { userGroups: UserGroup[] }) {
   });
   return (
     <form onSubmit={formik.handleSubmit}>
-      <div className="flex">
+      <div className="flex xl:flex-row lg:flex-row flex-col">
         <select
           value={selected}
           onChange={(e) => handleSelect(e)}
