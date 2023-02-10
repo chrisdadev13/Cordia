@@ -6,6 +6,8 @@ This is the frontend side of a real-time groupal chat app, based on discord, whi
 
 [Live Demo](http://cordia.vercel.app) :point_left:
 
+Secret code for The Odin Project Group - 63e5a8c757610474dea176c5
+
 ## Features
 
 ## Users
