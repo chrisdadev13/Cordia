@@ -12,6 +12,7 @@ function UserCard(props: { username: string }) {
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("group");
     navigate("/");
   };
 
