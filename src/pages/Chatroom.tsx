@@ -7,6 +7,7 @@ import ChatMessages from "../components/Chat/ChatMessages";
 import ChatSidebar from "../components/Chat/ChatSidebar";
 import ChatInput from "../components/Chat/ChatInput";
 import io, { Socket } from "socket.io-client";
+import { API_URL } from "../utils/constants";
 
 function Chatroom() {
   const { group, getGroup } = useGroup();
@@ -33,7 +34,7 @@ function Chatroom() {
     getGroup({ invitation: invitation, token: token });
     getUser();
 
-    const socket = io("http://localhost:8000");
+    const socket = io(API_URL);
     setSocket(socket);
 
     socket.on("connect", () => {
