@@ -17,7 +17,7 @@ function ChatSidebar({ creator, members }: SidebarProps) {
       );
   };
   return (
-    <div className="hidden lg:block h-full dark:border-white p-6 w-2/12 bg-gray-50 border border-black">
+    <div className="hidden lg:block h-full dark:border-white p-6 w-2/12 bg-gray-50 border dark:text-black  border-black">
       <div>
         <h2 className="font-bold">Founder:</h2>
         <p className="text-sm">{creator}</p>
