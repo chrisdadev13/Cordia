@@ -8,6 +8,7 @@ import ChatSidebar from "../components/Chat/ChatSidebar";
 import ChatInput from "../components/Chat/ChatInput";
 import io, { Socket } from "socket.io-client";
 import { API_URL } from "../utils/constants";
+import { useNavigate } from "react-router";
 
 function Chatroom() {
   const { group, getGroup } = useGroup();
@@ -17,6 +18,7 @@ function Chatroom() {
   const [socket, setSocket] = useState<any>(io("http://localhost:8000"));
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<any[]>([]);
+  const navigate = useNavigate();
 
   const getCurrentTime = () => {
     const date = new Date();
@@ -29,6 +31,12 @@ function Chatroom() {
 
     return `${hours}:${minutes}`;
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("token") === null) {
+      navigate("/home");
+    }
+  });
 
   useEffect(() => {
     getGroup({ invitation: invitation, token: token });
@@ -47,9 +55,7 @@ function Chatroom() {
     });
 
     socket.on("send-message", (data: any) => {
-      console.log(data);
       setMessages((prev) => [...prev, data]);
-      console.log(messages);
     });
 
     return () => {

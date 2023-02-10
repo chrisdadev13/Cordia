@@ -15,7 +15,7 @@ function ChatMessages(props: { messages: MessageProps[] }) {
         </p>
       </div>
       <hr className="my-7 bg-black border-black dark:bg-white dark:border-white" />
-      <div className="w-full mt-12 h-5/6 ">
+      <div className="w-full mt-12 overflow-y-scroll h-5/6 border-black border">
         {props.messages.map((message, i) => (
           <ChatMessage
             key={i}
