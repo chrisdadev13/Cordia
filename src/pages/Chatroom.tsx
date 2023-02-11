@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import useAuth from "../hooks/useAuth";
 import useGroup from "../hooks/useGroup";
 import WarningModal from "../utils/WarningModal";
@@ -19,6 +19,11 @@ function Chatroom() {
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<any[]>([]);
   const navigate = useNavigate();
+  const messageEnd = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messageEnd.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const getCurrentTime = () => {
     const date = new Date();
@@ -33,12 +38,16 @@ function Chatroom() {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("token") === null) {
+    if (
+      localStorage.getItem("token") === null ||
+      localStorage.getItem("group") === null
+    ) {
       navigate("/home");
     }
   });
 
   useEffect(() => {
+    scrollToBottom();
     getGroup({ invitation: invitation, token: token });
     getUser();
 
@@ -72,9 +81,17 @@ function Chatroom() {
     });
   };
 
-  const handleClick = () => {
-    sendMessage(message);
-    setMessage("");
+  const handleSending = () => {
+    if (message.length !== 0) {
+      sendMessage(message);
+      setMessage("");
+    }
+  };
+
+  const handleSendingEnter = (e: any) => {
+    if (e.key === "Enter" && message.length !== 0) {
+      handleSending();
+    }
   };
 
   return (
@@ -88,18 +105,25 @@ function Chatroom() {
           username={user.username}
         />
       </div>
-      <div className="flex justify-between w-full h-full">
-        <div className="p-3">
-          <ChatMessages messages={messages} />
+      <div className="flex w-full h-full">
+        <div className="p-3 w-full">
+          <ChatMessages
+            groupName={group.name}
+            groupDescription={group.description}
+            messages={messages}
+          />
           <ChatInput
             value={message}
             onChange={(e: any) => setMessage(e.target.value)}
-            onClick={handleClick}
+            onClick={handleSending}
+            onKeyDown={handleSendingEnter}
           />
         </div>
         <ChatSidebar creator={group.creator} members={group.members} />
       </div>
+
       <WarningModal />
+      <div ref={messageEnd}></div>
     </div>
   );
 }

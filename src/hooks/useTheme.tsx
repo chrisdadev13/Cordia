@@ -2,25 +2,29 @@ import React from "react";
 
 export default function useTheme() {
   const [dark, setDark] = React.useState<boolean>(false);
-  const theme = dark === true ? "dark" : "light";
+
+  React.useEffect(() => {
+    const currentTheme = localStorage.getItem("theme");
+
+    if (currentTheme === "dark") {
+      setDark(true);
+      window.document.documentElement.classList.add(currentTheme);
+    } else {
+      setDark(false);
+      window.document.documentElement.classList.remove("dark");
+    }
+  }, []);
 
   const toggleTheme = () => {
     setDark(!dark);
-  };
-
-  React.useEffect(() => {
-    const root = window.document.documentElement;
-
-    localStorage.setItem("theme", theme);
-
-    if (localStorage.getItem("theme") === "dark") {
-      setDark(true);
-      root.classList.add(theme);
+    if (!dark) {
+      localStorage.setItem("theme", "dark");
+      window.document.documentElement.classList.add("dark");
     } else {
-      setDark(false);
-      root.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      window.document.documentElement.classList.remove("dark");
     }
-  }, [dark, theme]);
+  };
 
   return {
     dark,

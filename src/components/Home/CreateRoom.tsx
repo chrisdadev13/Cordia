@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import groupsAPI from "../../api/groupsAPI";
-import { useNavigate } from "react-router";
 
 interface GroupFormValues {
   name: string;
@@ -12,6 +11,7 @@ interface GroupFormValues {
 }
 
 function CreateRoom() {
+  const [secretCode, setSecretCode] = useState<string>("");
   const formik = useFormik<GroupFormValues>({
     initialValues: {
       name: "",
@@ -28,10 +28,9 @@ function CreateRoom() {
       token: Yup.string(),
     }),
     onSubmit: (values) => {
-      groupsAPI.createGroup(values);
-      values.name = "";
-      values.category = "";
-      values.description = "";
+      groupsAPI.createGroup(values).then((res) => {
+        setSecretCode(res.group.group._id);
+      });
     },
   });
   return (
@@ -64,15 +63,22 @@ function CreateRoom() {
         id="description"
         value={formik.values.description}
         onChange={formik.handleChange}
+        maxLength={218}
         className="border border-black dark:border-white dark:bg-black w-full h-24 resize-none rounded-lg"
       />
       <button
-        className="border border-black dark:border-white dark:border"
+        className="border p-1 border-black dark:border-white dark:border"
         type="submit"
         onClick={() => formik.handleSubmit}
       >
         Create
       </button>
+      <div>
+        <p>
+          Group code (fill the form and press &quot;create&quot; to generate):{" "}
+        </p>
+        <p>{secretCode}</p>
+      </div>
     </form>
   );
 }

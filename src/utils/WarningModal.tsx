@@ -48,7 +48,7 @@ function WarningModal() {
               <button
                 data-modal-hide="defaultModal"
                 type="button"
-                className=" px-5 py-2 font-medium border border-b-4 border-r-4 border-black rounded-lg shadow-lg hover:shadow-sm"
+                className=" px-5 dark:text-white   py-2 font-medium border border-b-4 border-r-4 border-black rounded-lg shadow-lg hover:shadow-sm"
                 onClick={() => close()}
               >
                 I accept

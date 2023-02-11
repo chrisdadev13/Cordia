@@ -13,9 +13,9 @@ function SearchRoom(props: { userGroups: UserGroup[] }) {
   };
 
   useEffect(() => {
-    if (props.userGroups.length === 1) {
+    setTimeout(() => {
       setSelected(props.userGroups[0].id);
-    }
+    }, 200);
   }, [props.userGroups]);
 
   const formik = useFormik<JoinValues>({
@@ -38,17 +38,20 @@ function SearchRoom(props: { userGroups: UserGroup[] }) {
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="flex xl:flex-row lg:flex-row flex-col">
-        <select
-          value={selected}
-          onChange={(e) => handleSelect(e)}
-          className="bg-white dark:bg-black text-sm dark:text-white border-none focus:border-none focus:outline-none"
-        >
-          {props.userGroups.map((element, index) => (
-            <option value={element.id} key={index}>
-              {element.name}
-            </option>
-          ))}
-        </select>
+        {props.userGroups.length > 0 && (
+          <select
+            value={selected}
+            onChange={(e) => handleSelect(e)}
+            className="bg-white dark:bg-black text-sm dark:text-white border-none focus:border-none focus:outline-none"
+          >
+            {props.userGroups.map((element, index) => (
+              <option value={element.id} key={index}>
+                {element.name}
+              </option>
+            ))}
+          </select>
+        )}
+        {props.userGroups.length === 0 && <p>Group invitation: </p>}
         <p>{selected}</p>
       </div>
       <input
@@ -57,7 +60,9 @@ function SearchRoom(props: { userGroups: UserGroup[] }) {
         value={formik.values.invitation}
         onChange={formik.handleChange}
         placeholder={
-          formik.errors.invitation !== undefined ? formik.errors.invitation : "Paste the group code and press enter"
+          formik.errors.invitation !== undefined
+            ? formik.errors.invitation
+            : "Paste the group code and press enter"
         }
         type="text"
         className="border border-black dark:border-white dark:bg-black w-full rounded-lg h-12"

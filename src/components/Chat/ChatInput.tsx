@@ -4,9 +4,10 @@ interface InputProps {
   value: string;
   onChange: React.ChangeEventHandler;
   onClick: React.MouseEventHandler;
+  onKeyDown: React.KeyboardEventHandler;
 }
 
-function ChatInput({ value, onChange, onClick }: InputProps) {
+function ChatInput({ value, onChange, onClick, onKeyDown }: InputProps) {
   return (
     <div className="w-full p-5 flex mt-16">
       <input
@@ -14,6 +15,7 @@ function ChatInput({ value, onChange, onClick }: InputProps) {
         className="border border-black dark:border-white dark:bg-black dark:text-white dark:border-1 w-full p-4"
         value={value}
         onChange={onChange}
+        onKeyDown={onKeyDown}
       />
       <button
         onClick={onClick}
