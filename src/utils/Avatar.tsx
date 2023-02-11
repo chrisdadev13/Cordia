@@ -16,7 +16,7 @@ function Avatar({ username, w, h }: AvatarProps) {
   const svg = avatar.toString();
 
   return (
-    <div className="bg-white rounded-full">
+    <div className="bg-white flex items-center rounded-full">
       <SVG src={svg} width={w} height={h} />
     </div>
   );
