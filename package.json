@@ -20,6 +20,7 @@
     "react-inlinesvg": "^3.0.1",
     "react-router": "^6.8.0",
     "react-router-dom": "^6.8.0",
+    "remarkable": "^2.0.1",
     "socket.io-client": "^4.5.4",
     "typescript-eslint": "^0.0.1-alpha.0",
     "yup": "^0.32.11"
@@ -28,6 +29,7 @@
     "@types/node": "^18.13.0",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "@types/remarkable": "^2.0.3",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
     "@vitejs/plugin-react": "^3.1.0",
