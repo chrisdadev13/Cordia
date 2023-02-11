@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import ChatMessage from "./ChatMessage";
 import { MessageProps } from "./ChatMessage";
 
@@ -13,6 +13,12 @@ function ChatMessages({
   groupName,
   groupDescription,
 }: MessagesBoardProps) {
+  const messageEnd = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    messageEnd.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   return (
     <div className="p-6 h-5/6 w-full border-black dark:text-white dark:border-white">
       <div className="w-full flex flex-col items-center justify-center ">
@@ -29,6 +35,7 @@ function ChatMessages({
             time={message.time}
           />
         ))}
+        <div ref={messageEnd}></div>
       </div>
     </div>
   );

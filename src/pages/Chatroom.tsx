@@ -13,16 +13,16 @@ import { useNavigate } from "react-router";
 function Chatroom() {
   const { group, getGroup } = useGroup();
   const { user, getUser } = useAuth();
-  const invitation = localStorage.getItem("group") as string;
-  const token = localStorage.getItem("token") as string;
   const [socket, setSocket] = useState<any>(io("http://localhost:8000"));
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<any[]>([]);
   const navigate = useNavigate();
-  const messageEnd = useRef<HTMLDivElement>(null);
+  const roomEnd = useRef<HTMLDivElement>(null);
+  const invitation = localStorage.getItem("group") as string;
+  const token = localStorage.getItem("token") as string;
 
   const scrollToBottom = () => {
-    messageEnd.current?.scrollIntoView({ behavior: "smooth" });
+    roomEnd.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const getCurrentTime = () => {
@@ -123,7 +123,7 @@ function Chatroom() {
       </div>
 
       <WarningModal />
-      <div ref={messageEnd}></div>
+      <div ref={roomEnd}></div>
     </div>
   );
 }
