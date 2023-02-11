@@ -44,7 +44,7 @@ function Chatroom() {
     ) {
       navigate("/home");
     }
-  });
+  }, []);
 
   useEffect(() => {
     scrollToBottom();
