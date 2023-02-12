@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import useGroup from "../../hooks/useGroup";
 import groupsAPI from "../../api/groupsAPI";
 
 interface GroupFormValues {
@@ -12,6 +13,7 @@ interface GroupFormValues {
 
 function CreateRoom() {
   const [secretCode, setSecretCode] = useState<string>("");
+  const { joinGroup } = useGroup();
   const formik = useFormik<GroupFormValues>({
     initialValues: {
       name: "",
@@ -25,11 +27,13 @@ function CreateRoom() {
       name: Yup.string().required("Group name is required"),
       category: Yup.string().required("Group category is required"),
       description: Yup.string().max(90, "Must be 90 characters or less"),
+      filter: Yup.boolean(),
       token: Yup.string(),
     }),
     onSubmit: (values) => {
       groupsAPI.createGroup(values).then((res) => {
         setSecretCode(res.group.group._id);
+        joinGroup({ invitation: res.group.group._id, token: values.token });
       });
     },
   });
@@ -73,12 +77,6 @@ function CreateRoom() {
       >
         Create
       </button>
-      <div>
-        <p>
-          Group code (fill the form and press &quot;create&quot; to generate):{" "}
-        </p>
-        <p>{secretCode}</p>
-      </div>
     </form>
   );
 }
