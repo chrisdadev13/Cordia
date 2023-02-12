@@ -6,7 +6,7 @@ interface InputProps {
   onKeyDown: React.KeyboardEventHandler;
 }
 
-function ChatInput({ value, onChange, onClick, onKeyDown }: InputProps) {
+function ChatInput({ value, onChange, onKeyDown }: InputProps) {
   return (
     <div className="w-full p-5 flex mt-16">
       <input
