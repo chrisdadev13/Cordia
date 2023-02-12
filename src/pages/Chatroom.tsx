@@ -38,38 +38,40 @@ function Chatroom() {
   };
 
   useEffect(() => {
-    if (
-      localStorage.getItem("token") === null ||
+    if (localStorage.getItem("token") === null) {
+      navigate("/login");
+    } else if (localStorage.getItem("group") === null) {
+      navigate("/home");
+    } else if (
+      localStorage.getItem("token") === null &&
       localStorage.getItem("group") === null
     ) {
-      navigate("/home");
-    }
-  }, []);
+      navigate("/");
+    } else {
+      scrollToBottom();
+      getGroup({ invitation: invitation, token: token });
+      getUser();
 
-  useEffect(() => {
-    scrollToBottom();
-    getGroup({ invitation: invitation, token: token });
-    getUser();
+      const socket = io(API_URL);
+      setSocket(socket);
 
-    const socket = io(API_URL);
-    setSocket(socket);
+      socket.on("connect", () => {
+        console.log("Connected to socket.io server");
 
-    socket.on("connect", () => {
-      console.log("Connected to socket.io server");
-
-      socket.emit("join-room", {
-        username: user.username,
-        invitation: invitation,
+        socket.emit("join-room", {
+          username: user.username,
+          invitation: invitation,
+        });
       });
-    });
 
-    socket.on("send-message", (data: any) => {
-      setMessages((prev) => [...prev, data]);
-    });
+      socket.on("send-message", (data: any) => {
+        setMessages((prev) => [...prev, data]);
+      });
 
-    return () => {
-      socket.disconnect();
-    };
+      return () => {
+        socket.disconnect();
+      };
+    }
   }, []);
 
   const sendMessage = (message: string) => {
@@ -82,8 +84,8 @@ function Chatroom() {
   };
 
   const handleSending = () => {
-      sendMessage(message);
-      setMessage("");
+    sendMessage(message);
+    setMessage("");
   };
 
   const handleSendingEnter = (e: any) => {

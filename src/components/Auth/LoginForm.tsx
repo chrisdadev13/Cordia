@@ -22,7 +22,7 @@ function LoginForm() {
     validationSchema: Yup.object({
       username: Yup.string()
         .required("Username is required")
-        .max(30, "Must be 30 characters or less"),
+        .max(12, "Must be 12 characters or less"),
       password: Yup.string()
         .required("Password is required")
         .min(6, "Must be between 6 and 30 characters")
@@ -50,7 +50,7 @@ function LoginForm() {
         className={`border border-black rounded-md p-1 ${
           formik.errors.username !== undefined
             ? "border-red-700 placeholder:text-red-400"
-            : ""
+            : "border-green-700"
         }`}
       />
       <label htmlFor="password">Password</label>

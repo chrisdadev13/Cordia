@@ -36,7 +36,7 @@ function RegisterForm() {
         .trim()
         .lowercase()
         .required("Username is required")
-        .max(12, "Must be 8 characters or less"),
+        .max(12, "Must be 12 characters or less"),
       password: Yup.string()
         .trim()
         .required("Password is required")
@@ -67,7 +67,7 @@ function RegisterForm() {
           className={`border border-black rounded-md p-1 ${
             formik.errors.firstName !== undefined
               ? "border-red-700 placeholder:text-red-400"
-              : ""
+              : "border-green-700 border-2"
           }`}
         />
         <label htmlFor="lastName">Last name</label>
@@ -82,7 +82,7 @@ function RegisterForm() {
           className={`border border-black rounded-md p-1 ${
             formik.errors.lastName !== undefined
               ? "border-red-700 placeholder:text-red-400"
-              : ""
+              : "border-green-700 border-2"
           }`}
         />
         <label htmlFor="username">Username</label>
@@ -97,7 +97,7 @@ function RegisterForm() {
           className={`border border-black rounded-md p-1 ${
             formik.errors.username !== undefined
               ? "border-red-700 placeholder:text-red-400"
-              : ""
+              : "border-green-700 border-2"
           }`}
         />
         <label htmlFor="password">Password</label>
@@ -112,7 +112,7 @@ function RegisterForm() {
           className={`border border-black rounded-md  p-1 ${
             formik.errors.password !== undefined
               ? "border-red-700 placeholder:text-red-400"
-              : ""
+              : "border-green-700 border-2"
           }`}
         />
         <a href="/login">Already have an account?</a>
