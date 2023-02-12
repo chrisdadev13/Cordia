@@ -32,7 +32,7 @@ function ChatMessage({ username, message, time }: MessageProps) {
   return (
     <div className="flex my-1 p-2 w-full hover:bg-gray-100 dark:hover:bg-white dark:hover:text-black cursor-default items-center ">
       <p className="text-xs mr-2">
-        {hour}:{minutes}
+        {hour < 10 ? `0${hour}` : hour}:{minutes < 10 ? `0${minutes}` : minutes}
       </p>
       <Avatar username={username} w={24} h={24} />
 
