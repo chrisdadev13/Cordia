@@ -50,7 +50,7 @@ function LoginForm() {
         className={`border border-black rounded-md p-1 ${
           formik.errors.username !== undefined
             ? "border-red-700 placeholder:text-red-400"
-            : "border-green-700"
+            : ""
         }`}
       />
       <label htmlFor="password">Password</label>
