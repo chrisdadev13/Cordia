@@ -82,10 +82,8 @@ function Chatroom() {
   };
 
   const handleSending = () => {
-    if (message.length !== 0) {
       sendMessage(message);
       setMessage("");
-    }
   };
 
   const handleSendingEnter = (e: any) => {
@@ -115,7 +113,6 @@ function Chatroom() {
           <ChatInput
             value={message}
             onChange={(e: any) => setMessage(e.target.value)}
-            onClick={handleSending}
             onKeyDown={handleSendingEnter}
           />
         </div>

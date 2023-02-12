@@ -3,7 +3,6 @@ import React from "react";
 interface InputProps {
   value: string;
   onChange: React.ChangeEventHandler;
-  onClick: React.MouseEventHandler;
   onKeyDown: React.KeyboardEventHandler;
 }
 
@@ -12,17 +11,11 @@ function ChatInput({ value, onChange, onClick, onKeyDown }: InputProps) {
     <div className="w-full p-5 flex mt-16">
       <input
         type="text"
-        className="border border-black dark:border-white dark:bg-black dark:text-white dark:border-1 w-full p-4"
+        className="border-black border border-b-4 border-r-4 rounded-lg shadow-lg dark:border-white w-full p-4"
         value={value}
         onChange={onChange}
         onKeyDown={onKeyDown}
       />
-      <button
-        onClick={onClick}
-        className="border border-black dark:border-white dark:text-white text-black dark:bg-black bg-white rounded-none hover:border-r-4 hover:border-b-4 hover:border-black hover:transition hover:ease-in-out hover:duration-300"
-      >
-        Send
-      </button>
     </div>
   );
 }
