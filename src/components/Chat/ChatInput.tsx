@@ -11,7 +11,7 @@ function ChatInput({ value, onChange, onKeyDown }: InputProps) {
     <div className="w-full p-5 flex mt-16">
       <input
         type="text"
-        className="border-black border border-b-4 border-r-4 rounded-lg shadow-lg dark:border-white w-full p-4"
+        className="border-black border border-b-4 border-r-4 rounded-lg shadow-lg dark:border-white dark:bg-black w-full p-4"
         value={value}
         onChange={onChange}
         onKeyDown={onKeyDown}
