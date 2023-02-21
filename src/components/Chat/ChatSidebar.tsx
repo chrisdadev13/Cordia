@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Avatar from "../../utils/Avatar";
 
 interface SidebarProps {
   creator: string;
@@ -9,18 +10,24 @@ function ChatSidebar({ creator, members }: SidebarProps) {
   const listMembers = () => {
     if (members !== undefined)
       return (
-        <>
+        <div className="flex">
           {members.map((member, i) => (
-            <p key={i}>{member}</p>
+            <>
+              <Avatar username={creator} h={36} w={36} />
+              <p key={i}>{member}</p>
+            </>
           ))}
-        </>
+        </div>
       );
   };
   return (
     <div className="hidden lg:block h-full dark:border-white p-6 w-2/12 bg-gray-50 border dark:text-black  border-black">
       <div>
         <h2 className="font-bold">Founder:</h2>
-        <p className="text-sm">{creator}</p>
+        <div className="flex">
+          <Avatar username={creator} h={36} w={36} />
+          <p className="text-sm">{creator}</p>
+        </div>
       </div>
       <div className="mt-5">
         <h2 className="font-bold">Members:</h2>
