@@ -34,7 +34,6 @@ function RegisterForm() {
         .max(30, "Must be 30 characters or less"),
       username: Yup.string()
         .trim()
-        .lowercase()
         .required("Username is required")
         .max(12, "Must be 12 characters or less"),
       password: Yup.string()

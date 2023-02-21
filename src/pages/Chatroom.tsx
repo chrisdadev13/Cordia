@@ -25,18 +25,6 @@ function Chatroom() {
     roomEnd.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const getCurrentTime = () => {
-    const date = new Date();
-
-    let hours: any = date.getHours();
-    let minutes: any = date.getMinutes();
-
-    hours = hours < 10 ? `0${hours}` : hours;
-    minutes = minutes < 10 ? `0${minutes}` : minutes;
-
-    return `${hours}:${minutes}`;
-  };
-
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
       navigate("/login");
@@ -79,7 +67,6 @@ function Chatroom() {
       username: user.username,
       group: invitation,
       message: message,
-      time: getCurrentTime(),
     });
   };
 
