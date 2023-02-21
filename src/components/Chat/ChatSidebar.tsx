@@ -10,12 +10,12 @@ function ChatSidebar({ creator, members }: SidebarProps) {
   const listMembers = () => {
     if (members !== undefined)
       return (
-        <div className="flex">
+        <div>
           {members.map((member, i) => (
-            <>
-              <Avatar username={creator} h={36} w={36} />
+            <div key={i} className="flex items-center">
+              <Avatar username={member} h={28} w={28} />
               <p key={i}>{member}</p>
-            </>
+            </div>
           ))}
         </div>
       );
