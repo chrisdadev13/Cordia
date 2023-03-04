@@ -65,8 +65,8 @@ function RegisterForm() {
           type="text"
           className={`border border-black rounded-md p-1 ${
             formik.errors.firstName !== undefined
-              ? "border-red-700 placeholder:text-red-400"
-              : "border-green-700 border-2"
+              ? "placeholder:text-red-400"
+              : ""
           }`}
         />
         <label htmlFor="lastName">Last name</label>
@@ -80,8 +80,8 @@ function RegisterForm() {
           type="text"
           className={`border border-black rounded-md p-1 ${
             formik.errors.lastName !== undefined
-              ? "border-red-700 placeholder:text-red-400"
-              : "border-green-700 border-2"
+              ? "placeholder:text-red-400"
+              : ""
           }`}
         />
         <label htmlFor="username">Username</label>
@@ -95,8 +95,8 @@ function RegisterForm() {
           type="text"
           className={`border border-black rounded-md p-1 ${
             formik.errors.username !== undefined
-              ? "border-red-700 placeholder:text-red-400"
-              : "border-green-700 border-2"
+              ? "placeholder:text-red-400"
+              : ""
           }`}
         />
         <label htmlFor="password">Password</label>
@@ -110,8 +110,8 @@ function RegisterForm() {
           type="password"
           className={`border border-black rounded-md  p-1 ${
             formik.errors.password !== undefined
-              ? "border-red-700 placeholder:text-red-400"
-              : "border-green-700 border-2"
+              ? "placeholder:text-red-400"
+              : ""
           }`}
         />
         <a href="/login">Already have an account?</a>
